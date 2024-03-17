@@ -24,6 +24,22 @@ public class Reservation {
         return end;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
     public void cancel() {
 
     }
