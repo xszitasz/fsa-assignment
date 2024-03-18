@@ -1,6 +1,6 @@
-package com.posam.fsaassignment.beans;
+package com.posam.fsaassignment.entities;
 
-import com.posam.fsaassignment.enums.AnimalType;
+import com.posam.fsaassignment.enums.Race;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,9 +12,8 @@ public class Animal {
     private long id;
     private String name;
     private LocalDateTime created;
-
     @Enumerated(EnumType.STRING)
-    private AnimalType type;
+    private Race race;
 
     public long getId() {
         return id;
@@ -28,8 +27,8 @@ public class Animal {
         return created;
     }
 
-    public AnimalType getType() {
-        return type;
+    public Race getRace() {
+        return race;
     }
 
     public void setId(long id) {
@@ -44,7 +43,7 @@ public class Animal {
         this.created = created;
     }
 
-    public void setType(AnimalType type) {
-        this.type = type;
+    public void setRace(Race race) {
+        this.race = race;
     }
 }

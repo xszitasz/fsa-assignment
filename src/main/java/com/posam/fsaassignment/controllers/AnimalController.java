@@ -1,6 +1,6 @@
 package com.posam.fsaassignment.controllers;
 
-import com.posam.fsaassignment.beans.Animal;
+import com.posam.fsaassignment.entities.Animal;
 import com.posam.fsaassignment.services.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/animals")
 public class AnimalController {
 
     private final AnimalService animalService;
@@ -20,9 +21,9 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
-    @GetMapping("/animals")
+    @GetMapping("/getAnimals")
     public ResponseEntity<List<Animal>> getAllAnimals() {
-        List<Animal> animals = animalService.getAllAnimals();
+        List<Animal> animals = AnimalService.getAllAnimals();
         return ResponseEntity.ok(animals);
     }
 

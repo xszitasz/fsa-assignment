@@ -1,4 +1,4 @@
-package com.posam.fsaassignment.beans;
+package com.posam.fsaassignment.entities;
 
 public class Credit {
     private long count;

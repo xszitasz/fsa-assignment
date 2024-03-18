@@ -1,6 +1,6 @@
 package com.posam.fsaassignment.services;
 
-import com.posam.fsaassignment.beans.Animal;
+import com.posam.fsaassignment.entities.Animal;
 import com.posam.fsaassignment.enums.AnimalType;
 import com.posam.fsaassignment.repositories.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +13,20 @@ import java.util.stream.Collectors;
 @Service
 public class AnimalService {
 
-    private final AnimalRepository animalRepository;
+    private static AnimalRepository animalRepository = null;
 
     @Autowired
     public AnimalService(AnimalRepository animalRepository) {
-        this.animalRepository = animalRepository;
+        AnimalService.animalRepository = animalRepository;
     }
 
-    public List<Animal> getAllAnimals() {
+    public static List<Animal> getAllAnimals() {
         return animalRepository.findAll();
     }
 
     public List<Animal> getAllDogs() {
         return animalRepository.findAll().stream()
-                .filter(animal -> animal.getType() == AnimalType.DOG)
+                .filter(animal -> animal.getRace().getType() == AnimalType.DOG)
                 .collect(Collectors.toList());
     }
 

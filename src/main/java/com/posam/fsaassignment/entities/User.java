@@ -1,12 +1,21 @@
-package com.posam.fsaassignment.beans;
+package com.posam.fsaassignment.entities;
+
+import com.posam.fsaassignment.enums.UserRole;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
+@Entity(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime created;
     private String name;
+    @Column(name = "username")
     private String userName;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     public User() {
 
@@ -42,5 +51,13 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }
