@@ -1,5 +1,7 @@
 package com.posam.fsaassignment.entities;
 
+import com.posam.fsaassignment.enums.ReservationStatus;
+
 import java.time.LocalDateTime;
 
 public class Reservation {
@@ -7,6 +9,8 @@ public class Reservation {
     private LocalDateTime created;
     private LocalDateTime start;
     private LocalDateTime end;
+    private User user;
+    private ReservationStatus status;
 
     public long getId() {
         return id;

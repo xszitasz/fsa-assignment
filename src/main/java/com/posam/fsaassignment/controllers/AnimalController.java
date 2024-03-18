@@ -21,39 +21,39 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
-    @GetMapping("/getAnimals")
+    @GetMapping("/get/animals")
     public ResponseEntity<List<Animal>> getAllAnimals() {
         List<Animal> animals = AnimalService.getAllAnimals();
         return ResponseEntity.ok(animals);
     }
 
-    @GetMapping("/dogs")
+    @GetMapping("/get/dogs")
     public ResponseEntity<List<Animal>> getAllDogs() {
         List<Animal> dogs = animalService.getAllDogs();
         return ResponseEntity.ok(dogs);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable long id) {
         Optional<Animal> animal = animalService.getAnimalById(id);
         return animal.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
         Animal createdAnimal = animalService.createAnimal(animal);
         return new ResponseEntity<>(createdAnimal, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/put/{id}")
     public ResponseEntity<Animal> updateAnimal(@PathVariable long id, @RequestBody Animal animal) {
         animal.setId(id);
         Animal updatedAnimal = animalService.updateAnimal(animal);
         return ResponseEntity.ok(updatedAnimal);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAnimalById(@PathVariable long id) {
         animalService.deleteAnimalById(id);
         return ResponseEntity.noContent().build();
