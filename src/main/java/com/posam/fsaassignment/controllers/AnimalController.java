@@ -33,6 +33,12 @@ public class AnimalController {
         return ResponseEntity.ok(dogs);
     }
 
+    @GetMapping("/get/cats")
+    public ResponseEntity<List<Animal>> getAllCats() {
+        List<Animal> cats = animalService.getAllCats();
+        return ResponseEntity.ok(cats);
+    }
+
     @GetMapping("/get/{id}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable long id) {
         Optional<Animal> animal = animalService.getAnimalById(id);
