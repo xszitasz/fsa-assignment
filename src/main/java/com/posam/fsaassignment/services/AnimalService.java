@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Service
 public class AnimalService {
 
-    private static AnimalRepository animalRepository = null;
+    private static AnimalRepository animalRepository;
 
     @Autowired
     public AnimalService(AnimalRepository animalRepository) {
@@ -27,6 +27,12 @@ public class AnimalService {
     public List<Animal> getAllDogs() {
         return animalRepository.findAll().stream()
                 .filter(animal -> animal.getRace().getType() == AnimalType.DOG)
+                .collect(Collectors.toList());
+    }
+
+    public List<Animal> getAllCats() {
+        return animalRepository.findAll().stream()
+                .filter(animal -> animal.getRace().getType() == AnimalType.CAT)
                 .collect(Collectors.toList());
     }
 
