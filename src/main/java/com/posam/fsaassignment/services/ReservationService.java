@@ -20,6 +20,23 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
+//    @Transactional
+//    public Reservation createReservation(LocalDateTime startTime, LocalDateTime endTime, User user, Animal animal) {
+//        if (startTime == null || endTime == null || user == null || animal == null) {
+//            throw new IllegalArgumentException("Invalid input parameters for reservation creation");
+//        }
+//
+//        Reservation reservation = new Reservation();
+//        reservation.setStartTime(startTime);
+//        reservation.setEndTime(endTime);
+//        reservation.setUser(user);
+//        reservation.setAnimal(animal);
+//        reservation.setStatus(ReservationStatus.PENDING);
+//        reservation.setCreated(LocalDateTime.now());
+//
+//        return reservationRepository.save(reservation);
+//    }
+
     public List<Animal> findAvailableAnimals(LocalDateTime startTime, LocalDateTime endTime) {
         return reservationRepository.findAvailableAnimals(startTime, endTime);
     }
