@@ -1,17 +1,18 @@
 package com.posam.fsaassignment.entities;
 
 import com.posam.fsaassignment.enums.Race;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import org.springframework.lang.NonNull;
 
 @Entity
+@Table(name = "animals")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Nonnull
     private String name;
-    private LocalDateTime created;
     @Enumerated(EnumType.STRING)
     private Race race;
 
@@ -23,10 +24,6 @@ public class Animal {
         return name;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
     public Race getRace() {
         return race;
     }
@@ -35,12 +32,8 @@ public class Animal {
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
     }
 
     public void setRace(Race race) {

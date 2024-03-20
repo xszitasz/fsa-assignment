@@ -1,19 +1,25 @@
 package com.posam.fsaassignment.entities;
 
 import com.posam.fsaassignment.enums.UserRole;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime created;
+    @Nonnull
     private String name;
-    @Column(name = "username")
+    @Column(name = "user_name")
     private String userName;
+    @OneToOne(mappedBy = "user")
+    private Credit credit;
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
@@ -29,6 +35,7 @@ public class User {
         return created;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
@@ -45,7 +52,7 @@ public class User {
         this.created = created;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
