@@ -22,8 +22,10 @@
 - `TimeManager` renamed to `AnimalService`
 - `createPending()` renamed to `create()` in `ReservationFactory`
 - `getAnimalAvailability(LocalDateTime)` renamed to `findAvailableAnimals(AnimalRepository, LocalDateTime)`
+- `<<abstract>> User` renamed to `User` 
 
 ### Associations
 - Association between `Animal` and `Reservation` inverted
 - Association between `Race` and `AnimalType` added
 - Association between `Animal` and `AnimalType` removed
+- Association between `Animal` and `AnimalService` removed
