@@ -20,6 +20,7 @@ public class Animal {
         return id;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
