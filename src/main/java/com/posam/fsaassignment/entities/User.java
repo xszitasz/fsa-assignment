@@ -18,7 +18,8 @@ public class User {
     private String name;
     @Column(name = "user_name")
     private String userName;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "credit_id")
     private Credit credit;
     @Enumerated(EnumType.STRING)
     private UserRole role;
@@ -26,7 +27,6 @@ public class User {
     public User() {
         this.credit = new Credit();
         this.credit.setCount(0);
-        this.credit.setUser(this);
     }
 
     public long getId() {

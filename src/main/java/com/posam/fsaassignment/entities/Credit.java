@@ -9,9 +9,6 @@ public class Credit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private long count;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public Credit() {
 
@@ -23,13 +20,5 @@ public class Credit {
 
     public void setCount(long count) {
         this.count = count;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

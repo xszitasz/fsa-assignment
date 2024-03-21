@@ -35,7 +35,7 @@ INSERT INTO animals (id, name, race) VALUES
                                      (17, 'Fluffy', 'PERSIAN');
 
 -- Insert dummy data into the credits table (assuming it's not empty)
-INSERT INTO credits (count, user_id) VALUES (100, 1), (50, 2);
+INSERT INTO credits (count) VALUES (100), (50);
 
 -- Insert dummy data into the reservations table
 INSERT INTO reservations (created, start_time, end_time, status, user_id, animal_id) VALUES
