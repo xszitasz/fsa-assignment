@@ -12,19 +12,21 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private LocalDateTime created;
     @Nonnull
     private String name;
     @Column(name = "user_name")
     private String userName;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Credit credit;
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
     public User() {
-
+        this.credit = new Credit();
+        this.credit.setCount(0);
+        this.credit.setUser(this);
     }
 
     public long getId() {
