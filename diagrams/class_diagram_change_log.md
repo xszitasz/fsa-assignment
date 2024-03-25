@@ -22,7 +22,9 @@
 - `TimeManager` renamed to `AnimalService`
 - `createPending()` renamed to `create()` in `ReservationFactory`
 - `getAnimalAvailability(LocalDateTime)` renamed to `findAvailableAnimals(AnimalRepository, LocalDateTime)`
-- `<<abstract>> User` renamed to `User` 
+- `<<abstract>> User` renamed to `User`
+- `UserInterface` renamed to `UserService`
+- `createCat and createdDog` return type renamed to Animal
 
 ### Associations
 - Association between `Animal` and `Reservation` inverted
