@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: fsa-assignment
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sars
+    username: xszitasz
+    password: 623309
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    mapping-resources:
+      - persistence/sars-orm.xml
