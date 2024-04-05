@@ -5,34 +5,18 @@ info:
   version: 1.0.0
 
 paths:
-  /animals/get/{id}:
+  /animals:
     get:
-      summary: Get an animal by ID
-      operationId: getAnimalById
+      summary: Get an animal by ID or name
+      operationId: getAnimal
       parameters:
         - name: id
-          in: path
+          in: query
           description: ID of the animal to retrieve
           required: true
           schema:
             type: integer
             format: int64
-      responses:
-        '200':
-          description: Animal found
-          content:
-            application/json:
-              schema:
-                type: object
-                items:
-                  $ref: '#/components/schemas/Animal'
-        '404':
-          description: Animal not found
-  /animals/get:
-    get:
-      summary: Get an animal by name
-      operationId: getAnimalByName
-      parameters:
         - name: name
           in: query
           description: Name of the animal to retrieve
@@ -45,10 +29,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Animal'
+                type: object
+                items:
+                  $ref: '#/components/schemas/Animal'
         '404':
           description: Animal not found
-  /animals/create:
     post:
       summary: Create a new animal
       operationId: createAnimal
@@ -61,13 +46,13 @@ paths:
       responses:
         '201':
           description: Animal created successfully
-  /reservations/get/{id}:
+  /reservations:
     get:
       summary: Get a reservation by ID
       operationId: getReservationById
       parameters:
         - name: id
-          in: path
+          in: query
           description: ID of the reservation to retrieve
           required: true
           schema:
@@ -82,7 +67,6 @@ paths:
                 $ref: '#/components/schemas/Reservation'
         '404':
           description: Reservation not found
-  /reservations/create:
     post:
       summary: Create a new reservation
       operationId: createReservation
@@ -99,13 +83,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Reservation'
-  /users/get/{id}:
+  /users:
     get:
       summary: Get a user by ID
       operationId: getUserById
       parameters:
         - name: id
-          in: path
+          in: query
           description: ID of the user to retrieve
           required: true
           schema:
@@ -120,7 +104,6 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: User not found
-  /users/create:
     post:
       summary: Create a new user
       operationId: createUser
