@@ -1,11 +1,8 @@
 package sk.posam.fsa.service;
 
-import org.springframework.stereotype.Service;
-
 import sk.posam.fsa.User;
 import sk.posam.fsa.UserRepository;
 
-@Service
 public class UserService implements UserFacade {
     private final UserRepository userRepository;
 

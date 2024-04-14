@@ -7,33 +7,17 @@ info:
 paths:
   /animals:
     get:
-      summary: Get an animal by ID or name
-      operationId: getAnimal
-      parameters:
-        - name: id
-          in: query
-          description: ID of the animal to retrieve
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: name
-          in: query
-          description: Name of the animal to retrieve
-          required: true
-          schema:
-            type: string
+      summary: Get all animals
+      operationId: getAllAnimals
       responses:
         '200':
-          description: Animal found
+          description: List of all animals
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: '#/components/schemas/Animal'
-        '404':
-          description: Animal not found
     post:
       summary: Create a new animal
       operationId: createAnimal
@@ -46,6 +30,27 @@ paths:
       responses:
         '201':
           description: Animal created successfully
+  /animals/{id}:
+    get:
+      summary: Get an animal by ID
+      operationId: getAnimalById
+      parameters:
+        - name: id
+          in: path    # Changed from 'query' to 'path'
+          description: ID of the animal to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Animal found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+        '404':
+          description: Animal not found
   /reservations:
     get:
       summary: Get a reservation by ID
@@ -130,6 +135,7 @@ components:
           format: int64
         name:
           type: string
+          description: Name of the animal
         race:
           $ref: '#/components/schemas/Race'
       required:

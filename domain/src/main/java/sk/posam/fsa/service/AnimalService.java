@@ -1,11 +1,10 @@
 package sk.posam.fsa.service;
 
-import org.springframework.stereotype.Service;
-
 import sk.posam.fsa.AnimalRepository;
 import sk.posam.fsa.Animal;
 
-@Service
+import java.util.List;
+
 public class AnimalService implements AnimalFacade {
     private final AnimalRepository animalRepository;
 
@@ -26,5 +25,10 @@ public class AnimalService implements AnimalFacade {
     @Override
     public void create(Animal animal) {
         animalRepository.create(animal);
+    }
+
+    @Override
+    public List<Animal> getAll() {
+        return animalRepository.getAll();
     }
 }
