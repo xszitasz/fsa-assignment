@@ -41,7 +41,7 @@ public class AnimalController implements sk.posam.fsa.rest.api.AnimalsApi {
 
     @Override
     public ResponseEntity<List<AnimalDto>> getAllAnimals() {
-        List<Animal> animals = animalFacade.getAll(); // Assuming getAll method is added to AnimalFacade
+        List<Animal> animals = animalFacade.getAll();
         List<AnimalDto> animalDtos = animals.stream()
                 .map(animalMapper::toAnimalDto)
                 .collect(Collectors.toList());
