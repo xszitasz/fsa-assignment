@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import sk.posam.fsa.Animal;
 import sk.posam.fsa.AnimalRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,5 +37,10 @@ public class JpaAnimalRepositoryAdapter implements AnimalRepository {
     @Override
     public List<Animal> getAll() {
         return animalSpringDataRepository.findAll();
+    }
+
+    @Override
+    public List<Animal> getAllAnimalsWithinTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
+        return null;
     }
 }

@@ -1,8 +1,10 @@
-package sk.posam.fsa;
+package sk.posam.fsa.service;
+
+import sk.posam.fsa.Reservation;
 
 import java.util.List;
 
-public interface ReservationRepository {
+public interface ReservationFacade {
     Reservation get(long id);
     void create(Reservation reservation);
 

@@ -3,6 +3,7 @@ package sk.posam.fsa.service;
 import sk.posam.fsa.AnimalRepository;
 import sk.posam.fsa.Animal;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class AnimalService implements AnimalFacade {
@@ -30,5 +31,10 @@ public class AnimalService implements AnimalFacade {
     @Override
     public List<Animal> getAll() {
         return animalRepository.getAll();
+    }
+
+    @Override
+    public List<Animal> getAllAnimalsWithinTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
+        return animalRepository.getAllAnimalsWithinTimeRange(startTime, endTime);
     }
 }
