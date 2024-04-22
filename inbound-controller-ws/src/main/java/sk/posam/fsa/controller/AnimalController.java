@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import sk.posam.fsa.Animal;
 import sk.posam.fsa.Reservation;
 import sk.posam.fsa.mapper.AnimalMapper;
+import sk.posam.fsa.rest.api.AnimalsApi;
 import sk.posam.fsa.rest.dto.AnimalDto;
 import sk.posam.fsa.rest.dto.UserRoleDto;
 import sk.posam.fsa.security.CurrentUserDetailService;
@@ -14,10 +15,11 @@ import sk.posam.fsa.service.ReservationFacade;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
-public class AnimalController implements sk.posam.fsa.rest.api.AnimalsApi {
+public class AnimalController implements AnimalsApi {
 
     private final AnimalFacade animalFacade;
     private final ReservationFacade reservationFacade;
@@ -62,7 +64,7 @@ public class AnimalController implements sk.posam.fsa.rest.api.AnimalsApi {
         List<Reservation> allReservations = reservationFacade.getAll();
 
         List<Animal> availableAnimals = allAnimals.stream()
-                .filter(animal -> isAnimalAvailable(allReservations, startDateTime, endDateTime))
+                .filter(animal -> isAnimalAvailable(allReservations, startDateTime, endDateTime, animal))
                 .toList();
 
         List<AnimalDto> availableAnimalDtos = availableAnimals.stream()
@@ -72,13 +74,13 @@ public class AnimalController implements sk.posam.fsa.rest.api.AnimalsApi {
         return ResponseEntity.ok().body(availableAnimalDtos);
     }
 
-    private boolean isAnimalAvailable(List<Reservation> reservations, LocalDateTime startTime, LocalDateTime endTime) {
+    private boolean isAnimalAvailable(List<Reservation> reservations, LocalDateTime startTime, LocalDateTime endTime, Animal animal) {
         for (Reservation reservation : reservations) {
             LocalDateTime reservationStartTime = reservation.getStartTime();
             LocalDateTime reservationEndTime = reservation.getEndTime();
 
             // Check if the reservation overlaps with the specified time range
-            if (startTime.isBefore(reservationEndTime) && endTime.isAfter(reservationStartTime)) {
+            if (startTime.isBefore(reservationEndTime) && endTime.isAfter(reservationStartTime) && Objects.equals(animal.getId(), reservation.getAnimal().getId())) {
                 return false;
             }
         }
