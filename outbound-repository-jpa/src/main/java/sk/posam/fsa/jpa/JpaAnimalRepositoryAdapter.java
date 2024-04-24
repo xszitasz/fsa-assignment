@@ -18,7 +18,7 @@ public class JpaAnimalRepositoryAdapter implements AnimalRepository {
     }
 
     @Override
-    public Animal get(long id) {
+    public Animal get(Long id) {
         Optional<Animal> optionalAnimal = animalSpringDataRepository.findById(id);
         return optionalAnimal.orElse(null);
     }

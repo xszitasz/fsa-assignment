@@ -1,7 +1,7 @@
 package sk.posam.fsa;
 
 public interface UserRepository {
-    User get(long id);
-    User get(String name);
+    User get(Long id);
+    User get(String email);
     void create(User user);
 }

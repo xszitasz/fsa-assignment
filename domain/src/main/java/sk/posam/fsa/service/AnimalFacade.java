@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface AnimalFacade {
-    Animal get(long id);
+    Animal get(Long id);
     Animal get(String name);
     void create(Animal animal);
     List<Animal> getAll();

@@ -26,9 +26,9 @@ public class ReservationMapper {
         ReservationDto dto = new ReservationDto();
 
         dto.setId(entity.getId());
-        dto.setCreated(entity.getCreated().toString());
-        dto.setStartTime(entity.getStartTime().toString());
-        dto.setEndTime(entity.getEndTime().toString());
+        dto.setCreated(String.valueOf(entity.getCreated()));
+        dto.setStartTime(String.valueOf(entity.getStartTime()));
+        dto.setEndTime(String.valueOf(entity.getEndTime()));
         dto.setStatus(ReservationStatusDto.valueOf(entity.getStatus().name()));
         dto.setUser(userMapper.toUserDto(entity.getUser()));
         dto.setAnimal(animalMapper.toAnimalDto(entity.getAnimal()));

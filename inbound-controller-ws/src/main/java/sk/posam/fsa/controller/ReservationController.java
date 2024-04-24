@@ -5,11 +5,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import sk.posam.fsa.Reservation;
 import sk.posam.fsa.mapper.ReservationMapper;
+import sk.posam.fsa.mapper.UserMapper;
 import sk.posam.fsa.rest.dto.ReservationDto;
+import sk.posam.fsa.rest.dto.ReservationStatusDto;
+import sk.posam.fsa.rest.dto.UserDto;
 import sk.posam.fsa.rest.dto.UserRoleDto;
 import sk.posam.fsa.security.CurrentUserDetailService;
 import sk.posam.fsa.service.ReservationFacade;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,20 +23,26 @@ public class ReservationController implements sk.posam.fsa.rest.api.Reservations
     private final ReservationFacade reservationFacade;
     private final ReservationMapper reservationMapper;
     private final CurrentUserDetailService currentUserDetailService;
+    private final UserMapper userMapper;
 
-    public ReservationController(ReservationFacade reservationFacade, ReservationMapper reservationMapper, CurrentUserDetailService currentUserDetailService) {
+    public ReservationController(ReservationFacade reservationFacade, ReservationMapper reservationMapper, CurrentUserDetailService currentUserDetailService, UserMapper userMapper) {
         this.reservationFacade = reservationFacade;
         this.reservationMapper = reservationMapper;
         this.currentUserDetailService = currentUserDetailService;
+        this.userMapper = userMapper;
     }
 
     @Override
     public ResponseEntity<ReservationDto> createReservation(ReservationDto reservationDto) {
-        UserRoleDto userRole = currentUserDetailService.getCurrentUser().getRole();
-
-        if (userRole != UserRoleDto.ADMIN) {
+        if (currentUserDetailService.getCurrentUser().getRole() != UserRoleDto.ADMIN) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
+
+        UserDto userDto = userMapper.toUserDto(currentUserDetailService.getFullCurrentUser());
+
+        reservationDto.setStatus(ReservationStatusDto.PENDING);
+        reservationDto.setUser(userDto);
+        reservationDto.setCreated(String.valueOf(LocalDateTime.now()));
 
         Reservation reservationEntity = reservationMapper.toReservationEntity(reservationDto);
         reservationFacade.create(reservationEntity);

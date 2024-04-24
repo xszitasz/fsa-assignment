@@ -14,14 +14,14 @@ public class JpaUserRepositoryAdapter implements UserRepository {
         this.userSpringDataRepository = userSpringDataRepository;
     }
     @Override
-    public User get(long id) {
+    public User get(Long id) {
         Optional<User> user = userSpringDataRepository.findById(id);
         return user.orElse(null);
     }
 
     @Override
-    public User get(String name) {
-        Optional<User> user = userSpringDataRepository.findByUserName(name);
+    public User get(String email) {
+        Optional<User> user = userSpringDataRepository.findByEmail(email);
         return user.orElse(null);
     }
 

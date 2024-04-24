@@ -17,7 +17,7 @@ public class Animal {
         return race;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

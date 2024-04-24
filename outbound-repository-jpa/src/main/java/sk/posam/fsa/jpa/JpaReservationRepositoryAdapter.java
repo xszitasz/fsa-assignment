@@ -16,7 +16,7 @@ public class JpaReservationRepositoryAdapter implements ReservationRepository {
     }
 
     @Override
-    public Reservation get(long id) {
+    public Reservation get(Long id) {
         Optional<Reservation> optionalReservation = reservationSpringDataRepository.findReservationById(id);
         return optionalReservation.orElse(null);
     }

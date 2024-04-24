@@ -14,7 +14,7 @@ public class AnimalService implements AnimalFacade {
     }
 
     @Override
-    public Animal get(long id) {
+    public Animal get(Long id) {
         return animalRepository.get(id);
     }
 

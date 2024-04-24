@@ -13,7 +13,7 @@ public class ReservationService implements ReservationFacade{
     }
 
     @Override
-    public Reservation get(long id) {
+    public Reservation get(Long id) {
         return reservationRepository.get(id);
     }
 

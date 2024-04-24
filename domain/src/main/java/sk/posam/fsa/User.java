@@ -1,10 +1,7 @@
 package sk.posam.fsa;
 
-import java.time.LocalDateTime;
-
 public class User {
     private Long id;
-    private LocalDateTime created;
     private String name;
     private String userName;
     private String email;
@@ -16,12 +13,8 @@ public class User {
         this.credit.setCount(0);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
     }
 
     public String getName() {
@@ -48,12 +41,8 @@ public class User {
         this.credit = credit;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
     }
 
     public void setName(String name) {

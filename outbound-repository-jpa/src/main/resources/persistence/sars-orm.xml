@@ -56,12 +56,13 @@
             <id name="id">
                 <generated-value strategy="IDENTITY"/>
             </id>
-            <basic name="created"/>
             <basic name="name" optional="false"/>
+            <basic name="email"/>
             <basic name="userName">
                 <column name="user_name" nullable="false"/>
             </basic>
             <basic name="role">
+                <column name="role" nullable="false"/>
                 <convert converter="sk.posam.fsa.jpa.UserRoleConverter"/>
             </basic>
             <one-to-one name="credit" target-entity="sk.posam.fsa.Credit" orphan-removal="true">

@@ -16,8 +16,8 @@ public class UserService implements UserFacade {
     }
 
     @Override
-    public User get(String name) {
-        return userRepository.get(name);
+    public User get(String email) {
+        return userRepository.get(email);
     }
 
     @Override
