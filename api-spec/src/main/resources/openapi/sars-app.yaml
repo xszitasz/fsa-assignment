@@ -167,6 +167,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+  /users/{email}:
+    get:
+      summary: Get a user by email
+      operationId: getUserByEmail
+      parameters:
+        - name: email
+          in: path
+          description: Email of the user to retrieve
+          required: true
+          schema:
+            type: string
+            format: int64
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
 components:
   schemas:
     Animal:
