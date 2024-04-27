@@ -42,6 +42,7 @@ public class AnimalController implements AnimalsApi {
         }
 
         Animal animalEntity = animalMapper.toAnimalEntity(animalDto);
+        animalEntity.setId(null);
         animalFacade.create(animalEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
