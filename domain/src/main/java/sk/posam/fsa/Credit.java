@@ -5,7 +5,7 @@ public class Credit {
     private long count;
 
     public Credit() {
-
+        this.count = 0;
     }
 
     public Long getId() {

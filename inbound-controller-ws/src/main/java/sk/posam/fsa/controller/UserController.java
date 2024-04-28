@@ -3,6 +3,7 @@ package sk.posam.fsa.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import sk.posam.fsa.Credit;
 import sk.posam.fsa.User;
 import sk.posam.fsa.mapper.UserMapper;
 import sk.posam.fsa.rest.dto.UserDto;
@@ -25,6 +26,7 @@ public class UserController implements sk.posam.fsa.rest.api.UsersApi{
     @Override
     public ResponseEntity<UserDto> createUser(UserDto userDto) {
         UserRoleDto userRole = currentUserDetailService.getCurrentUser().getRole();
+        Credit credit = new Credit();
 
         if (userRole != UserRoleDto.ADMIN) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -32,6 +34,7 @@ public class UserController implements sk.posam.fsa.rest.api.UsersApi{
 
         User user = userMapper.toUserEntity(userDto);
         user.setId(null);
+        user.setCredit(credit);
         userFacade.create(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
