@@ -9,7 +9,6 @@ import sk.posam.fsa.mapper.UserMapper;
 import sk.posam.fsa.rest.dto.ReservationDto;
 import sk.posam.fsa.rest.dto.ReservationStatusDto;
 import sk.posam.fsa.rest.dto.UserDto;
-import sk.posam.fsa.rest.dto.UserRoleDto;
 import sk.posam.fsa.security.CurrentUserDetailService;
 import sk.posam.fsa.service.ReservationFacade;
 
@@ -34,10 +33,6 @@ public class ReservationController implements sk.posam.fsa.rest.api.Reservations
 
     @Override
     public ResponseEntity<ReservationDto> createReservation(ReservationDto reservationDto) {
-        if (currentUserDetailService.getCurrentUser().getRole() != UserRoleDto.ADMIN) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
         UserDto userDto = userMapper.toUserDto(currentUserDetailService.getFullCurrentUser());
 
         reservationDto.setStatus(ReservationStatusDto.PENDING);
