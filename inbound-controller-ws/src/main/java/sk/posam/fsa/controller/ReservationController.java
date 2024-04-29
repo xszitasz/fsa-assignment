@@ -61,4 +61,15 @@ public class ReservationController implements sk.posam.fsa.rest.api.Reservations
             return ResponseEntity.notFound().build();
         }
     }
+
+    @Override
+    public ResponseEntity<ReservationDto> updateReservation(ReservationDto reservationDto) {
+        try {
+            Reservation reservationEntity = reservationMapper.toReservationEntity(reservationDto);
+            reservationFacade.update(reservationEntity);
+            return ResponseEntity.ok().body(null);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(null);
+        }
+    }
 }

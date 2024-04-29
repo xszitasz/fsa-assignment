@@ -30,4 +30,9 @@ public class JpaReservationRepositoryAdapter implements ReservationRepository {
     public List<Reservation> getAll() {
         return reservationSpringDataRepository.findAll();
     }
+
+    @Override
+    public void update(Reservation reservation) {
+        reservationSpringDataRepository.save(reservation);
+    }
 }

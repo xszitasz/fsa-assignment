@@ -130,6 +130,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Reservation'
+    put:
+      summary: Update a reservation
+      operationId: updateReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '200':
+          description: Reservation updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
   /users:
     get:
       summary: Get a user by ID

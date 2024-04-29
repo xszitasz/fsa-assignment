@@ -26,4 +26,9 @@ public class ReservationService implements ReservationFacade{
     public List<Reservation> getAll() {
         return reservationRepository.getAll();
     }
+
+    @Override
+    public void update(Reservation reservation) {
+        reservationRepository.update(reservation);
+    }
 }
