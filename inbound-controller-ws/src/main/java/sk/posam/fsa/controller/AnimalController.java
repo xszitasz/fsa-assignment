@@ -26,7 +26,10 @@ public class AnimalController implements AnimalsApi {
     private final AnimalMapper animalMapper;
     private final CurrentUserDetailService currentUserDetailService;
 
-    public AnimalController(AnimalFacade animalFacade, ReservationFacade reservationFacade, AnimalMapper animalMapper, CurrentUserDetailService currentUserDetailService) {
+    public AnimalController(AnimalFacade animalFacade,
+                            ReservationFacade reservationFacade,
+                            AnimalMapper animalMapper,
+                            CurrentUserDetailService currentUserDetailService) {
         this.animalFacade = animalFacade;
         this.reservationFacade = reservationFacade;
         this.animalMapper = animalMapper;
@@ -64,13 +67,10 @@ public class AnimalController implements AnimalsApi {
         List<Animal> allAnimals = animalFacade.getAll();
         List<Reservation> allReservations = reservationFacade.getAll();
 
-        List<Animal> availableAnimals = allAnimals.stream()
+        List<AnimalDto> availableAnimalDtos = allAnimals.stream()
                 .filter(animal -> isAnimalAvailable(allReservations, startDateTime, endDateTime, animal))
-                .toList();
-
-        List<AnimalDto> availableAnimalDtos = availableAnimals.stream()
                 .map(animalMapper::toAnimalDto)
-                .collect(Collectors.toList());
+                .toList();
 
         return ResponseEntity.ok().body(availableAnimalDtos);
     }

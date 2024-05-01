@@ -10,6 +10,7 @@ public class CreditMapper {
         if (entity == null) { return null;}
 
         CreditDto dto = new CreditDto();
+        dto.setId(entity.getId());
         dto.setCount((int) entity.getCount());
         return dto;
     }
@@ -18,6 +19,7 @@ public class CreditMapper {
         if (dto == null) { return null;}
 
         Credit entity = new Credit();
+        entity.setId(dto.getId());
         entity.setCount(dto.getCount());
         return entity;
     }

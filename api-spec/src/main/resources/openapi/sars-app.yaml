@@ -204,6 +204,25 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: User not found
+  /credits:
+    put:
+      summary: Update credit count
+      operationId: updateCreditCount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credit'
+      responses:
+        '200':
+          description: Credit count updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+        '500':
+          description: Internal server error
 components:
   schemas:
     Animal:
