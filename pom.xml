@@ -14,8 +14,8 @@
 		<openapi-generator-maven-plugin.version>6.6.0</openapi-generator-maven-plugin.version>
 	</properties>
 
-	<groupId>com.posam</groupId>
-	<artifactId>fsa-assignment</artifactId>
+	<groupId>sk.posam.fsa</groupId>
+	<artifactId>parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 

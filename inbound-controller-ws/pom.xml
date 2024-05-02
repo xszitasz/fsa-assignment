@@ -4,12 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.posam</groupId>
-        <artifactId>fsa-assignment</artifactId>
+        <groupId>sk.posam.fsa</groupId>
+        <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>sk.posam.fsa</groupId>
     <artifactId>inbound-controller-ws</artifactId>
 
     <properties>
@@ -53,4 +52,34 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <!-- Activate whitelisting of allowed submodules -->
+                                        <exclude>sk.posam.fsa:*</exclude>
+                                    </excludes>
+                                    <includes>
+                                        <!-- Domain is obviously required -->
+                                        <include>sk.posam.fsa:domain</include>
+                                        <include>sk.posam.fsa:api-spec</include>
+                                    </includes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
