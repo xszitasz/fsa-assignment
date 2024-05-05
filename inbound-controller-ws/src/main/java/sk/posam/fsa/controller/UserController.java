@@ -41,8 +41,15 @@ public class UserController implements sk.posam.fsa.rest.api.UsersApi{
 
     @Override
     public ResponseEntity<UserDto> getUserByEmail(String email) {
-        return ResponseEntity.ok(userMapper.toUserDto(currentUserDetailService.getFullCurrentUser()));
+        try {
+            User currentUser = currentUserDetailService.getFullCurrentUser();
+            UserDto userDto = userMapper.toUserDto(currentUser);
+            return ResponseEntity.ok(userDto);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
 
     @Override
     public ResponseEntity<UserDto> getUserById(Long id) {

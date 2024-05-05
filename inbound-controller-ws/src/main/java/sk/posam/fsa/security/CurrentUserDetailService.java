@@ -30,6 +30,11 @@ public class CurrentUserDetailService {
     }
 
     public User getFullCurrentUser() {
-        return userFacade.get(getUserEmail());
+        String userEmail = getUserEmail();
+        if (userEmail != null) {
+            return userFacade.get(userEmail);
+        } else {
+            return null;
+        }
     }
 }
