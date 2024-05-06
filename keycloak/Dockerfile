@@ -1,17 +1,13 @@
 FROM quay.io/keycloak/keycloak:23.0
 # Must add json files before import, volume is not mounted yet
 ADD ./realms/realm-sars.json /opt/keycloak/data/import/realm.json
+# Import all files with the strategy to ignore existing realms
+RUN /opt/keycloak/bin/kc.sh import --dir=/opt/keycloak/data/import/ --override true --strategy IGNORE_EXISTING; exit 0
+# Start image
 
-# Custom entrypoint script to handle realm import
-COPY entrypoint.sh /opt/keycloak/bin/entrypoint.sh
-RUN chmod +x /opt/keycloak/bin/entrypoint.sh
+ENV KEYCLOAK_ADMIN admin
+ENV KEYCLOAK_ADMIN_PASSWORD admin
 
-# Expose Keycloak port
 EXPOSE 8080
 
-# Set environment variables
-ENV KEYCLOAK_ADMIN=admin
-ENV KEYCLOAK_ADMIN_PASSWORD=admin
-
-# Use custom entrypoint script
-ENTRYPOINT ["/opt/keycloak/bin/entrypoint.sh"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "-v", "start-dev", "--import-realm"]
