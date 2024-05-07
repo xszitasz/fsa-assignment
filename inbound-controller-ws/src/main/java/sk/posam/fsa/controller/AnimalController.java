@@ -51,22 +51,23 @@ public class AnimalController implements AnimalsApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteAnimal(AnimalDto animalDto) {
+    public ResponseEntity<Void> deleteAnimal(Long animalId) {
         UserRoleDto userRole = currentUserDetailService.getCurrentUser().getRole();
+        Animal animalToDelete = animalFacade.get(animalId);
 
         if (userRole != UserRoleDto.ADMIN) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
-        if (animalDto.getId() == null) {
+        if (animalId == null) {
             return ResponseEntity.badRequest().build();
         }
 
-        if (animalFacade.get(animalDto.getId()) == null) {
+        if (animalToDelete == null) {
             return ResponseEntity.notFound().build();
         }
 
-        animalFacade.delete(animalMapper.toAnimalEntity(animalDto));
+        animalFacade.delete(animalMapper.toAnimalEntity(animalMapper.toAnimalDto(animalToDelete)));
 
         return ResponseEntity.noContent().build();
     }

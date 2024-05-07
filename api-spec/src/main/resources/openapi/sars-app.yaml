@@ -30,20 +30,6 @@ paths:
       responses:
         '201':
           description: Animal created successfully
-    delete:
-      summary: Delete an animal
-      operationId: deleteAnimal
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Animal'
-      responses:
-        '204':
-          description: Animal deleted successfully
-        '404':
-          description: Animal not found
   /animals/{id}:
     get:
       summary: Get an animal by ID
@@ -63,6 +49,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Animal'
+        '404':
+          description: Animal not found
+    delete:
+      summary: Delete an animal
+      operationId: deleteAnimal
+      parameters:
+        - name: id
+          in: path
+          description: ID of the animal to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Animal deleted successfully
         '404':
           description: Animal not found
   /animals/available:
