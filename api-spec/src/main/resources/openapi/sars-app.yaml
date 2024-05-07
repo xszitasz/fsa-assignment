@@ -30,6 +30,20 @@ paths:
       responses:
         '201':
           description: Animal created successfully
+    delete:
+      summary: Delete an animal
+      operationId: deleteAnimal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animal'
+      responses:
+        '204':
+          description: Animal deleted successfully
+        '404':
+          description: Animal not found
   /animals/{id}:
     get:
       summary: Get an animal by ID

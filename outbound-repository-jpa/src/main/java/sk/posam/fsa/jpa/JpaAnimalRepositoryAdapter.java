@@ -30,6 +30,11 @@ public class JpaAnimalRepositoryAdapter implements AnimalRepository {
     }
 
     @Override
+    public void delete(Animal animal) {
+        animalSpringDataRepository.delete(animal);
+    }
+
+    @Override
     public void create(Animal animal) {
         animalSpringDataRepository.save(animal);
     }

@@ -24,6 +24,11 @@ public class AnimalService implements AnimalFacade {
     }
 
     @Override
+    public void delete(Animal animal) {
+        animalRepository.delete(animal);
+    }
+
+    @Override
     public void create(Animal animal) {
         animalRepository.create(animal);
     }
