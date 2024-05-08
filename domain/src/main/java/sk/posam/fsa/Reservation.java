@@ -66,16 +66,4 @@ public class Reservation {
     public void setAnimal(Animal animal) {
         this.animal = animal;
     }
-
-    public void cancel() {
-
-    }
-
-    public void reject() {
-
-    }
-
-    public void approve() {
-
-    }
 }

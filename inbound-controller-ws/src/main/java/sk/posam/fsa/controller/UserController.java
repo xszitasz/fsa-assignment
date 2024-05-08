@@ -50,7 +50,6 @@ public class UserController implements sk.posam.fsa.rest.api.UsersApi{
         }
     }
 
-
     @Override
     public ResponseEntity<UserDto> getUserById(Long id) {
         return null;

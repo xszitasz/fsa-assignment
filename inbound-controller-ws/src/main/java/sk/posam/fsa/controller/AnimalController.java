@@ -102,7 +102,6 @@ public class AnimalController implements AnimalsApi {
             LocalDateTime reservationStartTime = reservation.getStartTime();
             LocalDateTime reservationEndTime = reservation.getEndTime();
 
-            // Check if the reservation overlaps with the specified time range
             if (startTime.isBefore(reservationEndTime) && endTime.isAfter(reservationStartTime) && Objects.equals(animal.getId(), reservation.getAnimal().getId())) {
                 return false;
             }
